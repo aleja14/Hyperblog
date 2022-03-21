@@ -200,3 +200,26 @@ git push origin master ---- mandar cambios a master
 git add . ---adicionar todo
 git commit -am "colocar mensaje"
 git merge nombre de rama que se quiere juntar
+git log --all --graph --decorate --oneline ----ver cambios de manera grafica entre ramas
+alias arbolito="git log --all --graph --decorate --oneline"  colocar alias a los comandos
+$ git tag -a v0.1 -m "Resultados primer clase" 25fdc5d   agregar un tag
+
+Comandos para trabajar con etiquetas:
+Crear un nuevo tag y asignarlo a un commit: git tag -a nombre-del-tag id-del-commit.
+Borrar un tag en el repositorio local: git tag -d nombre-del-tag.
+Listar los tags de nuestro repositorio local: git tag o git show-ref --tags.
+Publicar un tag en el repositorio remoto: git push origin --tags.
+Borrar un tag del repositorio remoto: git tag -d nombre-del-tag y git push origin :refs/tags/nombre-del-tag.
+git show-ref --tags
+git push origin :refs/tags/dormido   --- borrar tag
+
+
+buena practica:
+git pull origin master
+git commit -am "algo"
+git push origin master
+git show-branch --- ver historia de ramas
+git show-branch --all   ----mas detalle de las ramas
+gitk -----ver historia de cambios por interfaz
+
+
