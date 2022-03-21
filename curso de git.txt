@@ -221,5 +221,203 @@ git push origin master
 git show-branch --- ver historia de ramas
 git show-branch --all   ----mas detalle de las ramas
 gitk -----ver historia de cambios por interfaz
+Pull request:
+Es una funcionalidad de github (en gitlab llamada merge request y en bitbucket push request), en la que un colaborador pide que revisen sus cambios antes de hacer merge a una rama, normalmente master.
+
+Al hacer un pull request se genera una conversación que pueden seguir los demás usuarios del repositorio, así como autorizar y rechazar los cambios.
+
+El flujo del pull request es el siguiente
+
+Se trabaja en una rama paralela los cambios que se desean (git checkout -b <rama>)
+Se hace un commit a la rama (git commit -am '<Comentario>')
+Se suben al remoto los cambios (git push origin <rama>)
+En GitHub se hace el pull request comparando la rama master con la rama del fix.
+Uno, o varios colaboradores revisan que el código sea correcto y dan feedback (en el chat del pull request)
+El colaborador hace los cambios que desea en la rama y lo vuelve a subir al remoto (automáticamente jala la historia de los cambios que se hagan en la rama, en remoto)
+Se aceptan los cambios en GitHub
+Se hace merge a master desde GitHub
+Importante: Cuando se modifica una rama, también se modifica el pull request.
 
 
+Forks o Bifurcaciones
+Es una característica única de GitHub en la que se crea una copia exacta del estado actual de un repositorio directamente en GitHub, éste repositorio podrá servir como otro origen y se podrá clonar (como cualquier otro repositorio), en pocas palabras, lo podremos utilizar como un git cualquiera
+.
+Un fork es como una bifurcación del repositorio completo, tiene una historia en común, pero de repente se bifurca y pueden variar los cambios, ya que ambos proyectos podrán ser modificados en paralelo y para estar al día un colaborador tendrá que estar actualizando su fork con la información del original.
+.
+Al hacer un fork de un poryecto en GitHub, te conviertes en dueñ@ del repositorio fork, puedes trabajar en éste con todos los permisos, pero es un repositorio completamente diferente que el original, teniendo alguna historia en común.
+.
+Los forks son importantes porque es la manera en la que funciona el open source, ya que, una persona puede no ser colaborador de un proyecto, pero puede contribuír al mismo, haciendo mejor software que pueda ser utilizado por cualquiera.
+.
+Al hacer un fork, GitHub sabe que se hizo el fork del proyecto, por lo que se le permite al colaborador hacer pull request desde su repositorio propio.
+
+Trabajando con más de 1 repositorio remoto
+Cuando trabajas en un proyecto que existe en diferentes repositorios remotos (normalmente a causa de un fork) es muy probable que desees poder trabajar con ambos repositorios, para ésto puedes crear un remoto adicional desde consola.
+
+git remote add <nombre_del_remoto> <url_del_remoto> 
+git remote upstream https://github.com/freddier/hyperblog
+Al crear un remoto adicional podremos, hacer pull desde el nuevo origen (en caso de tener permisos podremos hacer fetch y push)
+
+git pull <remoto> <rama>
+git pull upstream master
+Éste pull nos traerá los cambios del remoto, por lo que se estará al día en el proyecto, el flujo de trabajo cambia, en adelante se estará trabajando haciendo pull desde el upstream y push al origin para pasar a hacer pull request.
+
+git pull upstream master
+git push origin master
+
+asos para hacer deployment en un servidor web:
+Entrar a la capeta de los archivos del servidor.
+Copiar link en clone, elegir entre HTTPS o SSH del repositorio a contribuir.
+-En la carpeta deseada se clona el repositorio:
+git clone url
+Deploy:
+Realizar cambios y commit en GitHub.
+Traer al Repositorio local las actualizacion para el servidor en la capeta de los archivos del servidor.
+git pull ramaRemota main
+Nota: Siempre se debe proteger el archivo .git. Dependiendo del software para el servidor web, existen diferentes maneras. La conexión entre GitHub y el servidor se puede realizar mediante: Travis (pago) o Jenkis (Open source).
+
+
+#HazmeUnPullRequest
+
+hacer FORK de hyperblog
+en blogpost.html
+Dentro del ID “post” luego de “suscribete y dale like” agrega otra línea o párrafo con tu nombre o tu nombre de usuario en Platzi.
+hacer add, commit, push
+hacer un pull request
+
+
+
+Git funciona para muchos tipos de archivo, ¿Qué tal funciona Git con archivos binarios?
+
+Los puede agregar y versionar pero es mejor usar Git con texto plano.
+
+2.
+En un commit, los mensajes del commit son:
+
+Importantes y obligatorios.
+
+3.
+¿Qué es un branch o una rama en Git?
+Un repositorio aparte del master donde puedes trabajar en paralelo.
+
+4.
+Un repositorio remoto y un repositorio local:
+
+Tienen ramas similares dependiendo de cuáles haya enviado entre uno y otro.
+
+5.
+¿El HEAD en una rama es?
+
+El apuntador al estado actual del repositorio basado en la rama en la que estoy trabajando.
+
+6.
+¿Cuándo debería hacer un merge?
+
+Cuando quiero fusionar los cambios de una rama con otra.
+
+7.
+¿GitHub es?
+
+Un sistema online de manejo de repositorios de Git.
+
+8.
+Para transmitir cambios seguros entre tu repositorio local y GitHub, ¿qué se recomienda?
+
+Usar una llave SSH.
+
+9.
+Se crean dos archivos cuando creas una llave pública y privada para SSH, ¿cuál es la extensión de la llave privada?
+
+Ninguna extensión
+10.
+¿Qué crean los tags en Git?
+
+Versiones descargables y puntos únicos en una rama de un repositorio.
+
+11.
+¿Puedo crear ramas en GitHub que no tenga en mi repositorio local?
+
+Sí, tú decides si traer esas ramas a tu repositorio local.
+12.
+En un repositorio público en GitHub, ¿qué puede hacer los colaboradores?
+
+Hacer cambios al repositorio, hacer push/pull, crear ramas, etc.
+13.
+Para que dos personas trabajen en paralelo sobre el mismo archivo se recomienda:
+Una rama independiente por cada persona y sus cambios que luego con verificación se hace merge a master.
+
+14.
+Un pull request es:
+
+Un cambio sugerido a un repositorio que el dueño del repositorio puede autorizar y hacer merge a la rama que elija.
+
+15.
+El dueño de un repositorio al ver un pull request puede:
+
+Editarlo, aceptarlo, darle merge, comentarlo para pedir cambios.
+
+16.
+Cuando hago un fork de un proyecto en GitHub, ¿lo que logro es?
+
+Copiar un repositorio público a mis repositorios en GitHub, con todas sus ramas e historia anterior.
+
+17.
+Si en el .gitignore agrego esto: images/*.js. ¿Cuál de los siguientes archivos sería ignorado?
+
+images/jquery.js
+18.
+Cuando usas git stash, los cambios que “guardas” temporalmente se guardan en:
+
+Memoria temporal, volviendo al estado del último commit.
+
+19.
+¿Con amend puedo?
+
+Corregir los mensajes de un commit que hice mal sin que quede en la historia del repositorio.
+
+20.
+¿Qué puedes hacer con gitk?
+
+Ver en una interfaz visual las ramas y el log de tu repositorio.
+
+21.
+Si usas:
+
+git config --global alias.platzi "shortlog"
+
+¿Cómo invocar ese comando?
+
+git platzi
+22.
+¿Cómo instalas Gitk?
+Podemos instalarlo desde la página de Git.
+REPASAR CLASE
+23.
+¿Cómo llaman GitHub y GitLab a los "merges" (propuestas de cambios desde otra rama o repositorio)?
+GitHub los llama Pull Request y GitLab Merge Request.
+
+24.
+¿Puedes conectar tu repositorio local con más de un repositorio remoto?
+Verdadero
+25.
+Estás en la rama master y quieres mandar los últimos cambios que guardaste con git stash a la rama retomando-los-cambios (la rama no ha sido creada aún). ¿Cuál de las siguientes soluciones es incorrecta?
+
+git stash apply retomando-los-cambios
+26.
+¿Cuál es la diferencia entre git rm y git reset HEAD?
+git rm saca los archivos del repositorio y (opcionalmente) del disco duro. git reset head saca los archivos de Staging, pero no del disco duro.
+
+27.
+¿Para qué sirve git grep?
+
+Para encontrar las veces que hemos usado una palabra en los archivos del repositorio.
+28.
+Por defecto, GitHub usa la rama main como la rama principal. ¿Podemos cambiar la rama principal?
+
+Verdadero
+29.
+¿Para qué sirve GitHub Pages?
+Es un servicio de GitHub que nos permite publicar nuestros repositorios en internet (por ejemplo, nombre.github.io o nombre.github.io/proyecto).
+30.
+El Jefe Freddy despidió a Anita y no piensa volver a contratarla. ¿Qué debe hacer Anita para seguir haciendo contribuciones a los proyectos públicos de Platzi?
+
+Crear un Fork del proyecto y enviar Pull Request al proyecto original.
